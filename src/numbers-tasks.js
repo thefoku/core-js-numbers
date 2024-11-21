@@ -218,11 +218,16 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  *
  * если оно отлично от 1 и делится без остатка только на 1 и на само себя
- * 
+ *
  *
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -241,8 +246,7 @@ function isPrime(/* n */) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  const result = value || (value = def);
-  return result;
+  return Number(value) || def;
 }
 
 /**
@@ -256,8 +260,8 @@ function toNumber(value, def) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -273,8 +277,10 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  return index <= 1
+    ? index
+    : getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
 }
 
 /**
@@ -288,8 +294,12 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let result = 0;
+  for (let i = 0; i <= n; i += 1) {
+    result += i;
+  }
+  return result;
 }
 
 /**
@@ -303,8 +313,19 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const numStr = num.toString();
+  let sum = 0;
+
+  // numStr.forEach((digit) => {
+  //   sum += parseInt(digit, 10);
+  // });
+
+  for (const digit of numStr) {
+    sum += parseInt(digit, 10);
+  }
+
+  return sum;
 }
 
 /**
